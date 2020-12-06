@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MemesApp</string>
+    <string name="splash_logo">SplashLogo</string>
 </resources>

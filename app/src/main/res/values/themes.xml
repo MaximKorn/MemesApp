@@ -15,5 +15,9 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="panelBackgroundColor">@color/background_2</item>
+        <item name="android:colorForeground">@color/white</item>
+        <item name="helperTextColor">@color/white</item>
+        <item name="secondaryColor">@color/secondary</item>
     </style>
 </resources>

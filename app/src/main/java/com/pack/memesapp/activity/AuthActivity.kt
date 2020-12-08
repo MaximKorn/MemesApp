@@ -1,4 +1,4 @@
-package com.pack.memesapp
+package com.pack.memesapp.activity
 
 import android.os.Bundle
 import android.os.Handler
@@ -17,9 +17,19 @@ import android.widget.ProgressBar
 import android.widget.TextView
 
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.pack.memesapp.R
+import com.pack.memesapp.models.AuthInfo
+import com.pack.memesapp.models.LoginUserInfo
+import com.pack.memesapp.network.NetworkService
 
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AuthActivity : AppCompatActivity() {
 
@@ -35,6 +45,8 @@ class AuthActivity : AppCompatActivity() {
 
     private val passwordHintString = R.string.password_hint
     private val emptyFieldErrorString = R.string.empty_field_error
+
+    private val loginUserInfo = LoginUserInfo()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,13 +64,9 @@ class AuthActivity : AppCompatActivity() {
                 }
             }
 
-            override fun beforeTextChanged(s: CharSequence, start: Int,
-                                           count: Int, after: Int) {
-            }
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence, start: Int,
-                                       before: Int, count: Int) {
-            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
         })
 
         passwordFieldText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -94,12 +102,31 @@ class AuthActivity : AppCompatActivity() {
         spinner.visibility = View.VISIBLE
         loginButton.text = ""
 
-        Handler().postDelayed({
-            spinner.visibility = View.INVISIBLE
-            loginButton.text = getString(R.string.sign_in)
+        loginUserInfo.login = "qwerty"
+        loginUserInfo.password = passwordFieldText.text.toString()
 
-            errorTextView.visibility = View.VISIBLE
-            textView.visibility = View.VISIBLE
+        Handler().postDelayed({
+            NetworkService.authClient.login(loginUserInfo)?.enqueue(object : Callback<AuthInfo?> {
+
+                override fun onResponse(call: Call<AuthInfo?>, response: Response<AuthInfo?>) {
+                    if (response.isSuccessful) {
+                        val result = response.body()
+                    } else {
+                        val errorResponse: Error? = Gson().fromJson(
+                            response.errorBody()?.charStream(),
+                            object : TypeToken<Error>() {}.type
+                        )
+
+                        errorTextView.visibility = View.VISIBLE
+                        textView.visibility = View.VISIBLE
+                    }
+
+                    spinner.visibility = View.INVISIBLE
+                    loginButton.text = getString(R.string.sign_in)
+                }
+
+                override fun onFailure(call: Call<AuthInfo?>, t: Throwable) {}
+            })
         }, 1500)
     }
 

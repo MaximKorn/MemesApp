@@ -1,5 +1,6 @@
 package com.pack.memesapp.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 
@@ -20,9 +21,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.pack.memesapp.R
-import com.pack.memesapp.models.AuthInfo
-import com.pack.memesapp.models.LoginUserInfo
+import com.pack.memesapp.network.models.AuthInfo
+import com.pack.memesapp.network.models.LoginUserInfo
 import com.pack.memesapp.network.NetworkService
+import com.pack.memesapp.repo.UserInfoRepo
 
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes
@@ -110,7 +112,12 @@ class AuthActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<AuthInfo?>, response: Response<AuthInfo?>) {
                     if (response.isSuccessful) {
-                        val result = response.body()
+                        val requestResult = response.body()
+                        if (requestResult != null) {
+                            val repo = UserInfoRepo(applicationContext)
+                            repo.saveUserData(requestResult)
+                            startActivity(Intent(applicationContext, MainActivity::class.java))
+                        }
                     } else {
                         val errorResponse: Error? = Gson().fromJson(
                             response.errorBody()?.charStream(),

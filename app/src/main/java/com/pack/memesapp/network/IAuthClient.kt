@@ -1,7 +1,7 @@
 package com.pack.memesapp.network
 
-import com.pack.memesapp.models.AuthInfo
-import com.pack.memesapp.models.LoginUserInfo
+import com.pack.memesapp.network.models.AuthInfo
+import com.pack.memesapp.network.models.LoginUserInfo
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

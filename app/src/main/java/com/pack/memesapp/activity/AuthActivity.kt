@@ -105,7 +105,7 @@ class AuthActivity : AppCompatActivity() {
         loginButton.text = ""
 
         loginUserInfo.login = "qwerty"
-        loginUserInfo.password = passwordFieldText.text.toString()
+        loginUserInfo.password = "qwerty"
 
         Handler().postDelayed({
             NetworkService.authClient.login(loginUserInfo)?.enqueue(object : Callback<AuthInfo?> {

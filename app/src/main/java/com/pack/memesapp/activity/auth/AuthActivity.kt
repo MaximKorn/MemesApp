@@ -1,4 +1,4 @@
-package com.pack.memesapp.activity
+package com.pack.memesapp.activity.auth
 
 import android.content.Intent
 import android.os.Bundle
@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.pack.memesapp.R
+import com.pack.memesapp.activity.main.MainActivity
 import com.pack.memesapp.network.models.AuthInfo
 import com.pack.memesapp.network.models.LoginUserInfo
 import com.pack.memesapp.network.NetworkService

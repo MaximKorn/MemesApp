@@ -12,15 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MemesApp"
         android:fullBackupContent="true">
-        <activity android:name=".activity.SplashActivity" >
+        <activity android:name=".activity.splash.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.AuthActivity" />
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.auth.AuthActivity" />
+        <activity android:name=".activity.main.MainActivity" />
     </application>
 
 

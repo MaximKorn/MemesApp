@@ -1,12 +1,12 @@
-package com.pack.memesapp.activity
+package com.pack.memesapp.activity.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pack.memesapp.R
-import com.pack.memesapp.activity.fragment.AddFragment
-import com.pack.memesapp.activity.fragment.MemesListFragment
-import com.pack.memesapp.activity.fragment.UserProfileFragment
+import com.pack.memesapp.activity.main.fragment.AddFragment
+import com.pack.memesapp.activity.main.fragment.MemeCellsFragment
+import com.pack.memesapp.activity.main.fragment.UserProfileFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,11 +19,11 @@ class MainActivity : AppCompatActivity() {
         navigationView = findViewById(R.id.bottomNavigationView)
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.mainContentFrame, MemesListFragment()).commit()
+            .replace(R.id.mainContentFrame, MemeCellsFragment()).commit()
 
         navigationView.setOnNavigationItemSelectedListener {
             val selectedFragment = when (it.itemId) {
-                R.id.action_memes_list -> MemesListFragment()
+                R.id.action_memes_list -> MemeCellsFragment()
                 R.id.action_add -> AddFragment()
                 R.id.action_user_profile -> UserProfileFragment()
                 else -> null

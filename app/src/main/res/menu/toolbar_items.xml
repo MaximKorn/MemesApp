@@ -4,7 +4,7 @@
     <item
         android:id="@+id/action_memes_list"
         android:icon="@drawable/app_bar_memes_list"
-        android:title="@string/panels" />
+        android:title="@string/meme_cells" />
     <item
         android:id="@+id/action_add"
         android:icon="@drawable/app_bar_add"

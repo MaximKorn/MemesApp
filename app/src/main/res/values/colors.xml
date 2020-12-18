@@ -13,4 +13,6 @@
     <color name="background_2">#312F51</color>
     <color name="background_3">#12102B</color>
     <color name="secondary">#89FFFFFF</color>
+    <color name="dark">#99000000</color>
+    <color name="light">#9FACC7</color>
 </resources>

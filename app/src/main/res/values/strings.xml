@@ -9,10 +9,10 @@
     <string name="password_visibility">Password visibility</string>
     <string name="auth_error">Во время запроса произошла ошибка, возможно вы неверно ввели логин/пароль</string>
     <string name="title">Популярные мемы</string>
-    <string name="panels">panels</string>
-    <string name="add">add</string>
-    <string name="profile">profile</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="meme_cells">Лента с мемами</string>
+    <string name="add">Добавить мем</string>
+    <string name="profile">Профиль</string>
     <string name="text_view_meme">TextViewMeme</string>
-
+    <string name="error_first">Не удалось загрузить ленту</string>
+    <string name="error_second">Обновите экран или попробуйте позже.</string>
 </resources>

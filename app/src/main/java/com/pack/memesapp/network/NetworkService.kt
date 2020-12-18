@@ -25,4 +25,5 @@ object NetworkService {
     }
 
     val authClient = mRetrofit.create<IAuthClient>()
+    val memeDataClient = mRetrofit.create<IMemeDataClient>()
 }

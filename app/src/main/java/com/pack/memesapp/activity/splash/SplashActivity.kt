@@ -10,6 +10,8 @@ import com.pack.memesapp.activity.auth.AuthActivity
 
 class SplashActivity : AppCompatActivity() {
 
+   // private val splashDelay: Long = this.resources.getInteger(R.integer.splash_delay).toLong()
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="splash_delay" format="integer" type="dimen">500</integer>
+    <integer name="auth_delay" format="integer" type="dimen">1000</integer>
+    <integer name="refresh_delay" format="integer" type="dimen">300</integer>
+</resources>

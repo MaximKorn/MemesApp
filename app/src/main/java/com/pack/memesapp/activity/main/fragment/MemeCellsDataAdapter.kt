@@ -33,5 +33,4 @@ internal class MemeCellsDataAdapter(private val context: Context, private val me
         val imageView: ImageView = view.findViewById(R.id.imageViewMeme) as ImageView
         val textView: TextView = view.findViewById(R.id.textViewMeme)
     }
-
 }

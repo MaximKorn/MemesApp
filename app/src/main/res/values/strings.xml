@@ -15,4 +15,5 @@
     <string name="text_view_meme">TextViewMeme</string>
     <string name="error_first">Не удалось загрузить ленту</string>
     <string name="error_second">Обновите экран или попробуйте позже.</string>
+    <string name="days_ago">%1$d дней назад</string>
 </resources>

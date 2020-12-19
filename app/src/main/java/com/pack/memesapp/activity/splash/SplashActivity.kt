@@ -10,12 +10,10 @@ import com.pack.memesapp.activity.auth.AuthActivity
 
 class SplashActivity : AppCompatActivity() {
 
-   // private val splashDelay: Long = this.resources.getInteger(R.integer.splash_delay).toLong()
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        Handler().postDelayed({ startActivity(Intent(this, AuthActivity::class.java)) }, 300)
+        Handler().postDelayed({ startActivity(Intent(this, AuthActivity::class.java)) }, this.resources.getInteger(R.integer.splash_delay).toLong())
     }
 }

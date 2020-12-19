@@ -3,13 +3,13 @@ package com.pack.memesapp.network.models
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class Error {
+class Error (
 
     @SerializedName("code")
     @Expose
-    var code: String? = null
+    var code: String,
 
     @SerializedName("errorMessage")
     @Expose
-    var errorMessage: String? = null
-}
+    var errorMessage: String
+    )

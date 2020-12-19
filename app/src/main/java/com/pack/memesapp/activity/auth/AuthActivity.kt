@@ -36,7 +36,6 @@ import retrofit2.Response
 
 class AuthActivity : AppCompatActivity() {
 
-    //private val authDelay: Long = this.resources.getInteger(R.integer.auth_delay).toLong()
     private lateinit var passwordFieldText: ExtendedEditText
     private lateinit var passwordField: TextFieldBoxes
     private lateinit var loginFieldText: ExtendedEditText
@@ -49,8 +48,7 @@ class AuthActivity : AppCompatActivity() {
 
     private val passwordHintString = R.string.password_hint
     private val emptyFieldErrorString = R.string.empty_field_error
-
-    private val loginUserInfo = LoginUserInfo()
+    private val loginUserInfo = LoginUserInfo("qwerty", "qwerty")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,8 +104,8 @@ class AuthActivity : AppCompatActivity() {
         spinner.visibility = View.VISIBLE
         loginButton.text = ""
 
-        loginUserInfo.login = "qwerty" //loginFieldText.text.toString()
-        loginUserInfo.password = "qwerty"
+        //loginUserInfo.login = "qwerty" //loginFieldText.text.toString()
+        //loginUserInfo.password = "qwerty"
 
         Handler().postDelayed({
             NetworkService.authClient.login(loginUserInfo)?.enqueue(object : Callback<AuthInfo?> {
@@ -136,7 +134,7 @@ class AuthActivity : AppCompatActivity() {
 
                 override fun onFailure(call: Call<AuthInfo?>, t: Throwable) {}
             })
-        }, 1000)
+        }, this.resources.getInteger(R.integer.auth_delay).toLong())
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {

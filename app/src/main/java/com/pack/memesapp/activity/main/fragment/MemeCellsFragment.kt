@@ -1,5 +1,6 @@
 package com.pack.memesapp.activity.main.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -10,7 +11,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.gson.Gson
 import com.pack.memesapp.R
+import com.pack.memesapp.activity.meme.DetailedMemeActivity
 import com.pack.memesapp.network.NetworkService
 import com.pack.memesapp.network.models.MemeData
 import retrofit2.Call
@@ -37,8 +40,6 @@ class MemeCellsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_meme_cells, container, false)
     }
 
-//
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,6 +53,12 @@ class MemeCellsFragment : Fragment() {
         }
 
         refreshScreen(view);
+    }
+
+    fun memeCellClickListener(v: View, memeCell: MemeCell) {
+        val intent = Intent(context, DetailedMemeActivity::class.java)
+        intent.putExtra("memeCell", Gson().toJson(memeCell))
+        startActivity(intent)
     }
 
     private fun refreshScreen(view: View) {
@@ -71,15 +78,13 @@ class MemeCellsFragment : Fragment() {
                     errorFirstLine = view.findViewById(R.id.errorFirstLine)
                     errorSecondLine = view.findViewById(R.id.errorSecondLine)
 
-
-
                     if (response.isSuccessful) {
                         errorFirstLine.visibility = View.GONE
                         errorSecondLine.visibility = View.GONE
 
                         memeCells.clear()
                         response.body()?.forEach { data ->
-                            memeCells.add(MemeCell(data.photoUrl!!, data.description!!))
+                            memeCells.add(MemeCell(data))
                         }
 
                     } else {
@@ -88,7 +93,9 @@ class MemeCellsFragment : Fragment() {
                         errorSecondLine.visibility = View.VISIBLE
                     }
 
-                    dataAdapter = MemeCellsDataAdapter(view.context, memeCells)
+                    dataAdapter = MemeCellsDataAdapter(view.context, memeCells,
+                    MemeCellsDataAdapter.CellDataAdapterListener(::memeCellClickListener))
+
                     recyclerView = view.findViewById(R.id.recyclerView)
                     recyclerView.adapter = dataAdapter
 
